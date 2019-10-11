@@ -91,6 +91,10 @@
       axios.post(url).then(res=>{
           this.products=res.data;
       })
+      axios.post("api//alipay_callback",{app_id:this.$route.query.app_id,
+        total_amount:this.$route.query.total_amount,out_trade_no:this.$route.query.out_trade_no}).then(res=>{
+        this.order=res.data;
+      })
     }
   }
 </script>

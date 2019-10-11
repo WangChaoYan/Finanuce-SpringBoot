@@ -12,7 +12,7 @@ import allproduct from '@/components/allproduct'
 import welcome from '@/components/welcome'
 import myself from '@/components/myself'
 import Test from '@/components/Test'
-
+import dingdan from '@/components/dingdan'
 import VueParticles from 'vue-particles'
 Vue.use(VueParticles)
 
@@ -105,6 +105,10 @@ export default new Router({
       path:'/Test',
       name:'Test',
       component:Test
+    },{
+      path:'/dingdan',
+      name:'dingdan',
+      component:dingdan
     }
   ]
 })
