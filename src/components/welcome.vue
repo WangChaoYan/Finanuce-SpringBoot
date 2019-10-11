@@ -14,7 +14,6 @@
       </div>
     </div>
     <el-container>
-      <el-header>
         <el-menu
           :default-active="activeIndex2"
           class="el-menu-demo"
@@ -23,7 +22,7 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b">
-          <el-menu-item index="1"><router-link to="/welcome">首页</router-link></el-menu-item>
+          <el-menu-item index="1"><router-link to="/">首页</router-link></el-menu-item>
           <el-submenu index="2">
             <template slot="title"><router-link to="/allproduct">财富</router-link></template>
             <el-menu-item index="2-1"><router-link to="/productShow/1">定期活期</router-link></el-menu-item>
@@ -32,26 +31,26 @@
           <el-menu-item index="3" disabled>消息中心</el-menu-item>
           <el-menu-item index="4"><router-link to="/myself">我的</router-link></el-menu-item>
         </el-menu>
-      </el-header>
-      <el-main>
-        <el-carousel :interval="4000" type="card" height="350px">
+        <div id="el-carousel">
+        <el-carousel :interval="4000" type="card" style="width: 1500px" height="360px">
           <el-carousel-item >
-            <h3 class="medium"><img :src="imgUrl2" width="740px" height="350px"/></h3>
+            <h3 class="medium"><img :src="imgUrl2" width="640px" height="350px"/></h3>
           </el-carousel-item>
           <el-carousel-item >
-            <h3 class="medium"><img :src="imgUrl3" width="740px" height="350px"/></h3>
+            <h3 class="medium"><img :src="imgUrl3" width="640px" height="350px"/></h3>
           </el-carousel-item>
           <el-carousel-item >
-            <h3 class="medium"><img :src="imgUrl4" width="740px" height="350px"/></h3>
+            <h3 class="medium"><img :src="imgUrl4" width="640px" height="350px"/></h3>
           </el-carousel-item>
           <el-carousel-item >
-            <h3 class="medium"><img :src="imgUrl5" width="740px" height="350px"/></h3>
+            <h3 class="medium"><img :src="imgUrl5" width="640px" height="350px"/></h3>
           </el-carousel-item>
         </el-carousel>
-        <div><img :src="imgUrl" width="1464px" height="200px"/></div>
+        </div>
+        <div style="margin-top: 3px"><img :src="imgUrl" width="1500px" height="200px"/></div>
         <div id="el-row">
         <el-row :gutter="20">
-          <el-col :span="5"><div class="grid-content bg-purple">
+          <el-col :span="6"><div class="grid-content bg-purple">
             <div id="el-color">
               <h3>财富</h3>
               <h3>新手最高领888元</h3>
@@ -62,7 +61,7 @@
               <p class="p1">优质产品|知名合作伙伴，精选理财产品</p>
             </div>
           </div></el-col>
-          <el-col :span="7"><div class="grid-content bg-purple">
+          <el-col :span="6"><div class="grid-content bg-purple">
 
             <div id="el-color1">
               <h3>贷款</h3>
@@ -74,7 +73,7 @@
               <p class="p1">超低利率|日息万2起，按日计息</p>
             </div>
           </div></el-col>
-          <el-col :span="7"><div class="grid-content bg-purple">
+          <el-col :span="6"><div class="grid-content bg-purple">
             <div id="el-color2">
               <h3>保险</h3>
               <h3>超低价格，2.3折起</h3>
@@ -86,7 +85,7 @@
             </div>
 
           </div></el-col>
-          <el-col :span="5"><div class="grid-content bg-purple">
+          <el-col :span="6"><div class="grid-content bg-purple">
             <div id="el-color3">
               <h3>支付</h3>
               <h3>惠生活</h3>
@@ -100,7 +99,6 @@
           </div></el-col>
         </el-row>
         </div>
-      </el-main>
       <el-footer>
         <div id="footer">
           <div id="left">
@@ -196,8 +194,13 @@
   }
 </script>
 <style>
+  .hello{
+    width: 1500px;
+    height: 100%;
+    margin: 0 auto;
+  }
   #header{
-    width:1464px ;
+    width:1500px ;
     margin:0  auto;
     height: 72px;
     background-color: beige;
@@ -215,12 +218,9 @@
     margin-top: 8px;
     line-height: 60px;
   }
-
-
   #footer{
-    width: 1464px;
+    width: 1500px;
     height: 60px;
-    margin: 0 auto;
     background-color:#FAFFF0;
   }
   #left{
@@ -254,23 +254,6 @@
     float: left;
     background-color: beige;
   }
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 14px;
-    opacity: 0.75;
-    line-height: 200px;
-    margin: 0;
-  }
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
-  .el-col {
-    border-radius: 4px;
-  }
 
   .grid-content {
     border-radius: 4px;
@@ -281,19 +264,23 @@
     background-color: #f9fafc;
   }
   #el-color{
-      border-radius: 8px;
-     background-color: #FF7F50;
+    border-radius: 8px;
+    height: auto;
+    background-color: #FF7F50;
    }
   #el-color1{
     border-radius: 8px;
+    height: auto;
     background-color: #40E0D0;
   }
   #el-color2{
     border-radius: 8px;
+    height: auto;
     background-color: #FF8C00;
   }
   #el-color3{
     border-radius: 8px;
+    height: auto;
     background-color: #32CD32;
   }
   #el-bottom{
@@ -320,5 +307,16 @@
     padding-top: 8px;
     background-color: #32CD32;
   }
+  h3{
+    text-align: center;
+    font-size: large;
+    margin-bottom: 5px;
+  }
+  .p1{
+    text-align: center;
+    font-size: large;
+    margin-top: 25px;
+  }
+
 </style>
 

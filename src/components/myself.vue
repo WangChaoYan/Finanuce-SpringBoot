@@ -23,7 +23,7 @@
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b">
-        <el-menu-item index="1"><router-link to="/welcome">首页</router-link></el-menu-item>
+        <el-menu-item index="1"><router-link to="/">首页</router-link></el-menu-item>
         <el-submenu index="2">
           <template slot="title"><router-link to="/allproduct">财富</router-link></template>
           <el-menu-item index="2-1"><router-link to="/productShow/1">定期活期</router-link></el-menu-item>
