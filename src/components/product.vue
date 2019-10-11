@@ -1,11 +1,10 @@
 <template>
   <div class="hello">
     <div id="header">
-      <div id="header_left"><h2>金融P2P</h2></div>
-      <div id="header_right"><h4>登录|注册</h4></div>
+      <div id="header_left"><p id="p-title">金融P2P</p></div>
+      <div id="header_right"><h3>登录|注册</h3></div>
     </div>
     <el-container>
-      <el-header>
         <el-menu
           :default-active="activeIndex2"
           class="el-menu-demo"
@@ -14,7 +13,7 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b">
-          <el-menu-item index="1"><router-link to="/welcome">首页</router-link></el-menu-item>
+          <el-menu-item index="1"><router-link to="/">首页</router-link></el-menu-item>
           <el-submenu index="2">
             <template slot="title"><router-link to="/allproduct">财富</router-link></template>
             <el-menu-item index="2-1"><router-link to="/productShow/1">定期活期</router-link></el-menu-item>
@@ -23,7 +22,6 @@
           <el-menu-item index="3" disabled>消息中心</el-menu-item>
           <el-menu-item index="4"><router-link to="/myself">我的</router-link></el-menu-item>
         </el-menu>
-      </el-header>
     <el-main>
       <div id="middle">
         <div id="info">
@@ -197,23 +195,36 @@
   }
 </script>
 <style>
+  .hello{
+    width: 1500px;
+    height: auto;
+    margin: 0 auto;
+  }
   #header{
-    width:1460px ;
+    width:1500px ;
     margin:0  auto;
-    height: 72px;
+    height: 50px;
     background-color: beige;
   }
   #header_left{
     width: 300px;
+    height: 40px;
+    margin: 0 auto;
+    margin-left:200px ;
     float: left;
   }
+
   #header_right{
     width: 400px;
+    height: 40px;
     float: right;
-    margin-top: 8px;
+    margin-right:-150px ;
+  }
+  #p-title{
+    font-size: 40px;
   }
   #middle{
-    width: 1464px;
+    width: 1500px;
     height: 300px;
     margin: 0 auto;
   }
@@ -252,7 +263,7 @@
     margin-top: 100px;
   }
   #footer{
-    width: 1480px;
+    width: 1500px;
     height: 60px;
     margin: 0 auto;
     background-color:#FAFFF0;
@@ -288,7 +299,7 @@
     float: left;
   }
   #maininfo{
-    width: 1406px;
+    width: 1500px;
     height: 950px;
     margin-left: 60px;
     border: 1px solid gainsboro;
