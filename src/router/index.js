@@ -8,7 +8,7 @@ import adminlogin from '@/components/adminlogin'
 
 import VueParticles from 'vue-particles'
 Vue.use(VueParticles)
-import HelloWorld from '@/components/HelloWorld'
+
 import productShow from '@/components/productShow'
 import product from '@/components/product'
 import touzi from '@/components/touzi'
@@ -22,10 +22,6 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/HelloWorld',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },{
       path: '/',
       name: 'welcome',
       component: welcome
@@ -58,7 +54,7 @@ export default new Router({
       name:'Test',
       component:Test
     },{
-      path: '/',
+      path: '/login',
       name: 'login',
       component: login
     },
@@ -79,10 +75,6 @@ export default new Router({
       component: adminlogin
     },
     {
-      path: '/HelloWorld',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },{
       path: '/',
       name: 'welcome',
       component: welcome

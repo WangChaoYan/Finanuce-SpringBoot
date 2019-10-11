@@ -93,7 +93,7 @@ export default {
           axios.post(url,this.user).then(res=>{
             if (res.data=="success") {
               // 使用 vue-router 路由到指定页面，该方式称之为编程式导航,跳到用户页面
-              this.$router.push("/main");
+              this.$router.push("/");
             }else if(res.data=="fail"){
               alert("登陆失败");
             }
@@ -240,7 +240,7 @@ export default {
     top: 60px;
     left: 600px;
     opacity:1;
-    display: none;
+    display: block;
   }
 
   .carousel{

@@ -1,8 +1,17 @@
 <template>
   <div class="hello">
     <div id="header">
-      <div id="header_left"><h2>金融P2P</h2></div>
-      <div id="header_right"><h4>登录|注册</h4></div>
+      <div id="header_left" style="font-size: 35px">金融P2P</div>
+      <div id="header_right" style="font-size: 15px">
+        <div>
+          <span v-if="showname">
+            <span @click="login()">登录</span> | <span @click="registered()">注册</span>
+          </span>
+          <span v-if="!showname">
+            <span>{{names}}</span> | <span @click="out()">退出</span>
+          </span>
+        </div>
+      </div>
     </div>
     <el-container>
       <el-header>
@@ -154,7 +163,9 @@
           number: '',
           account: ''
         },
-        imgUrl1: ''
+        imgUrl1: '',
+        showname:true,
+        names:'',
       };
     },
     created(){
@@ -171,9 +182,22 @@
         var url = "api/insertDingDan";
         axios.post(url, this.products).then(res => {
         })
-      }
+      },
+      showUser:function () {
+        var url="api/getUserSession";
+        var _this=this;
+        axios.post(url).then(res=>{
+          if(res.data==null||res.data==""){
+            _this.showname=true;
+          }else {
+            _this.names=res.data;
+            _this.showname=false;
+          }
+        })
+      },
     },
     mounted(){
+        this.showUser();
       //页面加载时（页面初始化   需要加载的数据）
       var pid = this.$route.params.pid;
       var url = "api/selectProductById?pid=" + pid;
@@ -193,11 +217,15 @@
   #header_left{
     width: 300px;
     float: left;
+    align-items: center;
+    text-align: center;
+    line-height: 72px;
   }
   #header_right{
     width: 400px;
     float: right;
     margin-top: 8px;
+    line-height: 60px;
   }
   #middle{
     width: 1464px;

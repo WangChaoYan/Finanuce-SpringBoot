@@ -1,8 +1,17 @@
 <template>
   <div class="hello">
     <div id="header">
-      <div id="header_left"><h2>金融P2P</h2></div>
-      <div id="header_right"><h4>登录|注册</h4></div>
+      <div id="header_left" style="font-size: 35px">金融P2P</div>
+      <div id="header_right" style="font-size: 15px">
+        <div>
+          <span v-if="showname">
+            <span @click="login()">登录</span> | <span @click="registered()">注册</span>
+          </span>
+          <span v-if="!showname">
+            <span>{{names}}</span> | <span @click="out()">退出</span>
+          </span>
+        </div>
+      </div>
     </div>
     <el-container>
       <el-header>
@@ -14,7 +23,7 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b">
-          <el-menu-item index="1"><router-link to="/welcome">首页</router-link></el-menu-item>
+          <el-menu-item index="1"><router-link to="/">首页</router-link></el-menu-item>
           <el-submenu index="2">
             <template slot="title"><router-link to="/allproduct">财富</router-link></template>
             <el-menu-item index="2-1"><router-link to="/productShow/1">定期活期</router-link></el-menu-item>
@@ -118,7 +127,8 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from 'axios';
+  import $ from 'jquery';
   export default {
     data() {
       return {
@@ -128,7 +138,9 @@
         imgUrl2:'',
         imgUrl3:'',
         imgUrl4:'',
-        imgUrl5:''
+        imgUrl5:'',
+        showname:true,
+        names:'',
       };
     },
     created(){
@@ -152,14 +164,34 @@
       infomation:function (id) {
         var pid=id
         this.$router.push({path:'/product/'+pid})
+      },
+      registered:function () {
+        this.$router.push('/registered')
+      },
+      login:function () {
+        this.$router.push('/login')
+      },
+      showUser:function () {
+        var url="api/getUserSession";
+        var _this=this;
+        axios.post(url).then(res=>{
+          if(res.data==null||res.data==""){
+            _this.showname=true;
+          }else {
+           _this.names=res.data;
+            _this.showname=false;
+          }
+        })
+      },
+      out:function () {
+        var url="api/userLoginOut";
+        axios.post(url).then(res=>{
+         this.$router.push('/login');
+        })
       }
     },
     mounted(){
-        //页面加载时（页面初始化   需要加载的数据）
-      var url="api/selectAll";
-      axios.post(url).then(res=>{
-          this.products=res.data;
-      })
+      this.showUser();
     }
   }
 </script>
@@ -173,11 +205,15 @@
   #header_left{
     width: 300px;
     float: left;
+    align-items: center;
+    text-align: center;
+    line-height: 72px;
   }
   #header_right{
     width: 400px;
     float: right;
     margin-top: 8px;
+    line-height: 60px;
   }
 
 
