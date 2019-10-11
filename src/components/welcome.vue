@@ -1,10 +1,20 @@
 <template>
   <div class="hello">
     <div id="header">
-      <div id="header_left"><p id="p-title">金融P2P</p></div>
-      <div id="header_right"><h3>登录|注册</h3></div>
+      <div id="header_left" style="font-size: 35px">金融P2P</div>
+      <div id="header_right" style="font-size: 15px">
+        <div>
+          <span v-if="showname">
+            <span @click="login()">登录</span> | <span @click="registered()">注册</span>
+          </span>
+          <span v-if="!showname">
+            <span>{{names}}</span> | <span @click="out()">退出</span>
+          </span>
+        </div>
+      </div>
     </div>
     <el-container>
+      <el-header>
         <el-menu
           :default-active="activeIndex2"
           class="el-menu-demo"
@@ -13,7 +23,7 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b">
-          <el-menu-item index="1"><router-link to="/">首页</router-link></el-menu-item>
+          <el-menu-item index="1"><router-link to="/welcome">首页</router-link></el-menu-item>
           <el-submenu index="2">
             <template slot="title"><router-link to="/allproduct">财富</router-link></template>
             <el-menu-item index="2-1"><router-link to="/productShow/1">定期活期</router-link></el-menu-item>
@@ -22,8 +32,9 @@
           <el-menu-item index="3" disabled>消息中心</el-menu-item>
           <el-menu-item index="4"><router-link to="/myself">我的</router-link></el-menu-item>
         </el-menu>
+      </el-header>
       <el-main>
-        <div id="lunbo"><el-carousel :interval="4000" type="card" height="350px">
+        <el-carousel :interval="4000" type="card" height="350px">
           <el-carousel-item >
             <h3 class="medium"><img :src="imgUrl2" width="740px" height="350px"/></h3>
           </el-carousel-item>
@@ -37,7 +48,6 @@
             <h3 class="medium"><img :src="imgUrl5" width="740px" height="350px"/></h3>
           </el-carousel-item>
         </el-carousel>
-        </div>
         <div><img :src="imgUrl" width="1464px" height="200px"/></div>
         <div id="el-row">
         <el-row :gutter="20">
@@ -117,7 +127,8 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from 'axios';
+  import $ from 'jquery';
   export default {
     data() {
       return {
@@ -127,7 +138,9 @@
         imgUrl2:'',
         imgUrl3:'',
         imgUrl4:'',
-        imgUrl5:''
+        imgUrl5:'',
+        showname:true,
+        names:'',
       };
     },
     created(){
@@ -150,47 +163,62 @@
       },
       infomation:function (id) {
         var pid=id
-        this.$router.push({path:'/product/'+  pid})
+        this.$router.push({path:'/product/'+pid})
+      },
+      registered:function () {
+        this.$router.push('/registered')
+      },
+      login:function () {
+        this.$router.push('/login')
+      },
+      showUser:function () {
+        var url="api/getUserSession";
+        var _this=this;
+        axios.post(url).then(res=>{
+          if(res.data==null||res.data==""){
+            _this.showname=true;
+          }else {
+           _this.names=res.data;
+            _this.showname=false;
+          }
+        })
+      },
+      out:function () {
+        var url="api/userLoginOut";
+        axios.post(url).then(res=>{
+         this.$router.push('/login');
+        })
       }
     },
     mounted(){
-        //页面加载时（页面初始化   需要加载的数据）
+      this.showUser();
     }
   }
 </script>
 <style>
-  .hello{
-    width: 1500px;
-    height: auto;
-    margin: 0 auto;
-  }
-
   #header{
-    width:1500px ;
+    width:1464px ;
     margin:0  auto;
-    height: 50px;
+    height: 72px;
     background-color: beige;
   }
   #header_left{
     width: 300px;
-    height: 40px;
-    margin: 0 auto;
-    margin-left:200px ;
     float: left;
+    align-items: center;
+    text-align: center;
+    line-height: 72px;
   }
-
   #header_right{
     width: 400px;
-    height: 40px;
     float: right;
-    margin-right:-150px ;
+    margin-top: 8px;
+    line-height: 60px;
   }
-  #p-title{
-  font-size: 40px;
-}
+
 
   #footer{
-    width: 1500px;
+    width: 1464px;
     height: 60px;
     margin: 0 auto;
     background-color:#FAFFF0;
@@ -291,11 +319,6 @@
     border-radius: 8px;
     padding-top: 8px;
     background-color: #32CD32;
-  }
-  #lunbo{
-    width: 1500px;
-    height: 400px;
-    margin: 0 auto;
   }
 </style>
 

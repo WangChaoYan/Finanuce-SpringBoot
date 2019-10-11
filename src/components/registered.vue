@@ -55,7 +55,7 @@ export default {
       });
     },
     back:function () {
-      this.$router.push("/");
+      this.$router.push("/login");
     }
 
   },

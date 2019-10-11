@@ -1,10 +1,20 @@
 <template>
   <div class="hello">
     <div id="header">
-      <div id="header_left"><p id="p-title">金融P2P</p></div>
-      <div id="header_right"><h3>登录|注册</h3></div>
+      <div id="header_left" style="font-size: 35px">金融P2P</div>
+      <div id="header_right" style="font-size: 15px">
+        <div>
+          <span v-if="showname">
+            <span @click="login()">登录</span> | <span @click="registered()">注册</span>
+          </span>
+          <span v-if="!showname">
+            <span>{{names}}</span> | <span @click="out()">退出</span>
+          </span>
+        </div>
+      </div>
     </div>
     <el-container>
+      <el-header>
         <el-menu
           :default-active="activeIndex2"
           class="el-menu-demo"
@@ -13,7 +23,7 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b">
-          <el-menu-item index="1"><router-link to="/">首页</router-link></el-menu-item>
+          <el-menu-item index="1"><router-link to="/welcome">首页</router-link></el-menu-item>
           <el-submenu index="2">
             <template slot="title"><router-link to="/allproduct">财富</router-link></template>
             <el-menu-item index="2-1"><router-link to="/productShow/1">定期活期</router-link></el-menu-item>
@@ -22,6 +32,7 @@
           <el-menu-item index="3" disabled>消息中心</el-menu-item>
           <el-menu-item index="4"><router-link to="/myself">我的</router-link></el-menu-item>
         </el-menu>
+      </el-header>
       <el-main>
         <div><img :src="imgUrl" width="1464px"/></div>
         <div id="middle">
@@ -67,7 +78,9 @@
         activeIndex2: '1',
         imgUrl:'',
         imgUrl1:'',
-        products:[]
+        products:[],
+        showname:true,
+        names:'',
       };
     },
     created(){
@@ -83,9 +96,22 @@
       infomation:function (id) {
         var pid=id;
         this.$router.push({path:'/product/'+pid});
-      }
+      },
+      showUser:function () {
+        var url="api/getUserSession";
+        var _this=this;
+        axios.post(url).then(res=>{
+          if(res.data==null||res.data==""){
+            _this.showname=true;
+          }else {
+            _this.names=res.data;
+            _this.showname=false;
+          }
+        })
+      },
     },
     mounted(){
+        this.showUser();
       //页面加载时（页面初始化   需要加载的数据）
       var status=this.$route.params.status;
       var url="api/selectByStatus?status="+status;
@@ -96,36 +122,28 @@
   }
 </script>
 <style>
-  .hello{
-    width: 1500px;
-    height: auto;
-    margin: 0 auto;
-  }
+
   #header{
-    width:1500px ;
+    width:1464px ;
     margin:0  auto;
-    height: 50px;
+    height: 72px;
     background-color: beige;
   }
   #header_left{
     width: 300px;
-    height: 40px;
-    margin: 0 auto;
-    margin-left:200px ;
     float: left;
+    align-items: center;
+    text-align: center;
+    line-height: 72px;
   }
-
   #header_right{
     width: 400px;
-    height: 40px;
     float: right;
-    margin-right:-150px ;
-  }
-  #p-title{
-    font-size: 40px;
+    margin-top: 8px;
+    line-height: 60px;
   }
   #middle{
-    width: 1500px;
+    width: 1464px;
     height: auto;
     margin: 0 auto;
   }
@@ -143,7 +161,7 @@
     transform: scale(1.4);
   }
   #footer{
-    width: 1500px;
+    width: 1464px;
     height: 60px;
     margin: 0 auto;
     background-color:#FAFFF0;

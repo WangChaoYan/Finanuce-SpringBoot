@@ -49,7 +49,7 @@
           </el-form-item>
         </div>
         <el-button id="submit" type="primary" @click="add()" style="height: 40px">注 册</el-button>
-        <a href="/">
+        <a href="/login">
           <el-button type="info" class="register-tis" style="height: 40px">已经有账号？</el-button>
         </a>
       </el-form>
