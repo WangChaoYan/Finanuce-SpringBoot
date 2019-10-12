@@ -14,7 +14,6 @@
       </div>
     </div>
     <el-container>
-      <el-header>
         <el-menu
           :default-active="activeIndex2"
           class="el-menu-demo"
@@ -32,15 +31,14 @@
           <el-menu-item index="3" disabled>消息中心</el-menu-item>
           <el-menu-item index="4"><router-link to="/myself">我的</router-link></el-menu-item>
         </el-menu>
-      </el-header>
       <el-main>
-        <div><img :src="imgUrl" width="1464px"/></div>
+        <div><img :src="imgUrl" width="1460px"/></div>
         <div id="middle">
           <div id="middle-info" v-for="product in products" @click="infomation(product.pid)">
-            <h5>{{product.pname}}</h5><br><br>
-            <h1>{{product.rate}}%</h1><br>
-            <h5>{{product.pinfomation}}</h5>
-            <h4>{{product.days}}天&nbsp;&nbsp;|&nbsp;&nbsp;{{product.limits}}起购</h4>
+            <h1 class="product-info">{{product.pname}}</h1><br><br>
+            <h1 class="product-info">{{product.rate}}%</h1><br><br><br><br>
+            <h2 class="product-info">{{product.pinfomation}}</h2>
+            <h2 class="product-info">{{product.days}}天&nbsp;&nbsp;|&nbsp;&nbsp;{{product.limits}}起购</h2>
           </div>
         </div>
       </el-main>
@@ -95,7 +93,13 @@
       },
       infomation:function (id) {
         var pid=id;
-        this.$router.push({path:'/product/'+pid});
+        this.$router.push({path:'/touzi/'+pid});
+      },
+      registered:function () {
+        this.$router.push('/registered')
+      },
+      login:function () {
+        this.$router.push('/login')
       },
       showUser:function () {
         var url="api/getUserSession";
@@ -109,6 +113,15 @@
           }
         })
       },
+      out:function () {
+        var url="api/userLoginOut";
+        axios.post(url).then(res=>{
+          this.$router.push('/login');
+        })
+      }
+    },
+    mounted(){
+      this.showUser();
     },
     mounted(){
         this.showUser();
@@ -124,7 +137,7 @@
 <style>
 
   #header{
-    width:1464px ;
+    width:1500px ;
     margin:0  auto;
     height: 72px;
     background-color: beige;
@@ -143,9 +156,13 @@
     line-height: 60px;
   }
   #middle{
-    width: 1464px;
+    width: 1500px;
     height: auto;
     margin: 0 auto;
+  }
+  .product-info{
+    text-align: center;
+    margin-top: 20px;
   }
   #middle-info{
     border: 1px solid #cceff5;
@@ -161,40 +178,36 @@
     transform: scale(1.4);
   }
   #footer{
-    width: 1464px;
-    height: 60px;
-    margin: 0 auto;
-    background-color:#FAFFF0;
+    width: 1500px;
+    height: 65px;
+    background-color:#f0f0f0;
+    margin-top: 15px;
+    margin-left: -20px;
   }
   #left{
-    width: 1000px;
+    width: 800px;
     float: left;
+    margin-top: 10px;
+    margin-left: 30px;
   }
   #right{
     width: 400px;
     float: right;
+    margin-top: 18px;
   }
   #left_left{
-    width: 170px;
-    margin-top: 7px;
+    width: 100px;
     float: left;
   }
   #left_right{
-    width: 700px;
-    margin-left:-50px;
+    width: 650px;
     float: left;
   }
   #top{
-    width: 700px;
-    height: 27px;
     margin-top: 8px;
-    margin-left: -246px;
-    float: left;
   }
   #foot{
-    width: 700px;
-    height: 27px;
-    float: left;
+    margin-top: 8px;
   }
 </style>
 

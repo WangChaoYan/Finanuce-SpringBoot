@@ -220,39 +220,35 @@
   }
   #footer{
     width: 1500px;
-    height: 60px;
-    background-color:#FAFFF0;
+    height: 65px;
+    background-color:#f0f0f0;
+    margin-top: 15px;
+    margin-left: -20px;
   }
   #left{
-    width: 1000px;
+    width: 800px;
     float: left;
+    margin-top: 10px;
+    margin-left: 30px;
   }
   #right{
     width: 400px;
     float: right;
+    margin-top: 18px;
   }
   #left_left{
-    width: 170px;
-    margin-top: 7px;
+    width: 100px;
     float: left;
   }
   #left_right{
-    width: 700px;
-    margin-left:-50px;
+    width: 650px;
     float: left;
   }
   #top{
-    width: 700px;
-    height: 27px;
-    margin-top: 8px;
-    margin-left: -246px;
-    float: left;
+  margin-top: 8px;
   }
   #foot{
-    width: 700px;
-    height: 27px;
-    float: left;
-    background-color: beige;
+    margin-top: 8px;
   }
 
   .grid-content {

@@ -2,27 +2,36 @@
   <div class="hello">
     <div id="header">
       <div id="header_left"><p id="p-title">金融P2P</p></div>
-      <div id="header_right"><h3>登录|注册</h3></div>
+      <div id="header_right" style="font-size: 15px">
+        <div>
+          <span v-if="showname">
+            <span @click="login()">登录</span> | <span @click="registered()">注册</span>
+          </span>
+          <span v-if="!showname">
+            <span>{{names}}</span> | <span @click="out()">退出</span>
+          </span>
+        </div>
+      </div>
     </div>
     <el-container>
-        <el-menu
-          :default-active="activeIndex2"
-          class="el-menu-demo"
-          mode="horizontal"
-          @select="handleSelect"
-          background-color="#545c64"
-          text-color="#fff"
-          active-text-color="#ffd04b">
-          <el-menu-item index="1"><router-link to="/">首页</router-link></el-menu-item>
-          <el-submenu index="2">
-            <template slot="title"><router-link to="/allproduct">财富</router-link></template>
-            <el-menu-item index="2-1"><router-link to="/productShow/1">定期活期</router-link></el-menu-item>
-            <el-menu-item index="2-2"><router-link to="/touziShow/2">资金投资</router-link></el-menu-item>
-          </el-submenu>
-          <el-menu-item index="3" disabled>消息中心</el-menu-item>
-          <el-menu-item index="4"><router-link to="/myself">我的</router-link></el-menu-item>
-        </el-menu>
-    <el-main>
+      <el-menu
+        :default-active="activeIndex2"
+        class="el-menu-demo"
+        mode="horizontal"
+        @select="handleSelect"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b">
+        <el-menu-item index="1"><router-link to="/">首页</router-link></el-menu-item>
+        <el-submenu index="2">
+          <template slot="title"><router-link to="/allproduct">财富</router-link></template>
+          <el-menu-item index="2-1"><router-link to="/productShow/1">定期活期</router-link></el-menu-item>
+          <el-menu-item index="2-2"><router-link to="/touziShow/2">资金投资</router-link></el-menu-item>
+        </el-submenu>
+        <el-menu-item index="3" disabled>消息中心</el-menu-item>
+        <el-menu-item index="4"><router-link to="/myself">我的</router-link></el-menu-item>
+      </el-menu>
+
       <div id="middle">
         <div id="info">
           <div id="title"><h1>{{products.pname}}</h1></div><br>
@@ -46,11 +55,11 @@
         <hr>
         <div id="main_info">
           <h3 id="p1">购买说明</h3><br/>
-          <p id="p2">该产品为投资连结保险，购买初始费用1%，犹豫期内退保可退还。</p><br/>
-          <p id="p3">满期后自动退还至原购买银行卡；未满期时，可随时退保，退保费用详见费用规则。</p>
+          <div id="p2"> <p>该产品为投资连结保险，购买初始费用1%，犹豫期内退保可退还。</p><br/>
+            <p id="p3">满期后自动退还至原购买银行卡；未满期时，可随时退保，退保费用详见费用规则。</p></div>
         </div>
         <div id="main_table">
-          <h3 id="p4">购买与领取</h3><br/>
+          <h3 class="p4">购买与领取</h3><br/>
           <table border="1px black" width="700px" height="250px">
             <tr>
               <td>购买金额</td>
@@ -75,9 +84,9 @@
 
           </table>
         </div>
-
+        <br/>
         <div id="main_table1">
-          <h3 id="p5">基本信息</h3><br/>
+          <h3 class="p4">基本信息</h3><br/>
           <table border="1px black" width="700px" height="250px">
             <tr>
               <td>产品名称</td>
@@ -104,8 +113,6 @@
         </div>
 
       </div>
-
-    </el-main>
       <el-footer>
         <div id="footer">
           <div id="left">
@@ -151,7 +158,8 @@
           number:'',
           account:''
         },
-        imgUrl1:''
+        imgUrl1:'',
+        names:''
       };
     },
     created(){
@@ -165,9 +173,9 @@
         console.log(key, keyPath);
       },
       buy: function () {
-
-        var url = "api/pay";
-        axios.post(url,this.products).then(res => {
+        if(this.names!=''){
+            var url = "api/pay";
+          axios.post(url,this.products).then(res => {
             if(res.status==200){
               let routerData=this.$router.resolve({path:'/Test',query:{htmls:res.data}})
               this.htmls=res.data
@@ -177,14 +185,43 @@
               document.body.appendChild(div)
               document.forms[0],submit();
             }
-        })
+          })
+        }else{
+            this.$router.push('/login');
+        }
+
 //        var url = "api/insertDingDan";
 //        axios.post(url, this.products).then(res => {
 //          alert(res.data);
 //        })
+      },
+      registered:function () {
+        this.$router.push('/registered')
+      },
+      login:function () {
+        this.$router.push('/login')
+      },
+      showUser:function () {
+        var url="api/getUserSession";
+        var _this=this;
+        axios.post(url).then(res=>{
+          if(res.data==null||res.data==""){
+            _this.showname=true;
+          }else {
+            _this.names=res.data;
+            _this.showname=false;
+          }
+        })
+      },
+      out:function () {
+        var url="api/userLoginOut";
+        axios.post(url).then(res=>{
+          this.$router.push('/login');
+        })
       }
     },
     mounted(){
+      this.showUser();
       //页面加载时（页面初始化   需要加载的数据）
       var pid=this.$route.params.pid;
       var url="api/selectProductById?pid="+pid;
@@ -225,7 +262,7 @@
   }
   #middle{
     width: 1500px;
-    height: 300px;
+    height: 220px;
     margin: 0 auto;
   }
   #title{
@@ -242,7 +279,7 @@
     border: 1px solid gainsboro;
   }
   #shuoming{
-    margin-left: -286px;
+    margin-left: 60px;
   }
   #info_left{
     float: left;
@@ -257,49 +294,46 @@
     margin-left: 60px;
   }
   #buy{
-    width: 500px;
-    height: 265px;
-    float: right;
-    margin-top: 100px;
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-top: 50px;
+    margin-left: 200px;
   }
   #footer{
     width: 1500px;
-    height: 60px;
-    margin: 0 auto;
-    background-color:#FAFFF0;
+    height: 65px;
+    background-color:#f0f0f0;
+    margin-top: 15px;
+    margin-left: -20px;
   }
   #left{
-    width: 1000px;
+    width: 800px;
     float: left;
+    margin-top: 10px;
+    margin-left: 30px;
   }
   #right{
     width: 400px;
     float: right;
+    margin-top: 18px;
   }
   #left_left{
-    width: 170px;
-    margin-top: 7px;
+    width: 100px;
     float: left;
   }
   #left_right{
-    width: 700px;
-    margin-left:-50px;
+    width: 650px;
     float: left;
   }
   #top{
-    width: 700px;
-    height: 27px;
     margin-top: 8px;
-    margin-left: -246px;
-    float: left;
   }
   #foot{
-    width: 700px;
-    height: 27px;
-    float: left;
+    margin-top: 8px;
   }
   #maininfo{
-    width: 1500px;
+    width: 1400px;
     height: 950px;
     margin-left: 60px;
     border: 1px solid gainsboro;
@@ -311,30 +345,26 @@
   #main_nav{
     margin-top: 80px;
   }
+  #main_info{
+    width: 1400px;
+    height: 100px;
+  }
   #p1{
-    float: left;
     margin-left: 50px;
+    font-size: 15px;
+  }
+  .p4{
+    font-size: 15px;
+    font-size: 15px;
   }
   #p2{
-    float: right;
-    margin-right: 700px;
-  }
-  #p3{
-      float: right;
-      margin-right: 580px;
-    }
-  #p4{
     float: left;
+    margin-left: 100px;
   }
   #main_table{
-    float: left;
     margin-left: 50px;
   }
-  #p5{
-    float: left;
-  }
   #main_table1{
-    float: left;
     margin-left: 50px;
   }
 </style>
