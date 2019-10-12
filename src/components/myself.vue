@@ -36,7 +36,7 @@
           <div id="info-info"><h1 id="buy">我的购买</h1>
           <el-table
             :data="order"
-            style="width: 65%;margin: 0 auto"
+            style="width: 70%;margin: 0 auto"
             :row-class-name="tableRowClassName">
             <el-table-column
               prop="tradcname"
@@ -100,7 +100,7 @@
         imgUrl1:'',
         order:[],
         showname:true,
-        names:'',
+        names:''
       };
     },
     created(){
@@ -108,6 +108,8 @@
     this.imgUrl1 = require("@/"+urlTemp1);
     let urlTemp = "assets/title.png";
     this.imgUrl = require("@/"+urlTemp);
+
+    this.names=this.$route.params.names;//页面传参接收方式
     },
     methods: {
       handleSelect(key, keyPath) {
@@ -146,7 +148,7 @@
         this.showUser();
         //页面加载时（页面初始化   需要加载的数据）
 
-      var uname='admin';//uname未获取
+      var uname=this.names;//uname未获取
       var url="api/selectDingDanByUname?uname="+uname;
       axios.post(url).then(res=>{
           this.order=res.data;
@@ -234,6 +236,10 @@
   #buy{
     width: 200px;
     margin-left: 165px;
+  }
+  #info{
+    width: 1200px;
+    margin: 0 auto;
   }
 </style>
 
