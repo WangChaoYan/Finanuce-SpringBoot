@@ -11,7 +11,7 @@
     </el-table-column>
     <el-table-column  prop="uname"  label="用户名"  width="180">
     </el-table-column>
-    <el-table-column  prop="pname"  label="权限"  width="180">
+    <el-table-column  prop="pname"  label="商品名"  width="180">
     </el-table-column>
     <el-table-column  prop="time"  label="时间"  width="180">
     </el-table-column>
@@ -94,7 +94,7 @@
 
 
       query: function () {
-        
+
         var url = "api/manageDingdan/" + this.params.page + "/" + this.params.size
         axios.get(url).then(res => {
 
