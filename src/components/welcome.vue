@@ -194,6 +194,9 @@
   }
 </script>
 <style>
+  body {
+    line-height: normal;
+  }
   .hello{
     width: 1500px;
     height: 100%;
@@ -234,7 +237,7 @@
   #right{
     width: 400px;
     float: right;
-    margin-top: 18px;
+    margin-top: 10px;
   }
   #left_left{
     width: 100px;
