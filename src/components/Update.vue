@@ -36,7 +36,6 @@
       var url="api/findById";
 
       axios.post(url,{pid:pid}).then(res=>{
-        alert(res.data)
 
         if(res.data!=null){
           this.product=res.data;

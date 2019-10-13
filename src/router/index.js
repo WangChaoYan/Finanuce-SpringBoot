@@ -112,7 +112,7 @@ export default new Router({
       name:'/touzi',
       component:touzi
     },{
-      path:'/productByy/:pid',
+      path:'/productBuy/:pid',
       name:'productBuy',
       component:productBuy
     },{

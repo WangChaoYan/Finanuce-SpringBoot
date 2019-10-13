@@ -28,7 +28,7 @@
           <el-menu-item index="2-1"><router-link to="/productShow/1">定期活期</router-link></el-menu-item>
           <el-menu-item index="2-2"><router-link to="/touziShow/2">资金投资</router-link></el-menu-item>
         </el-submenu>
-        <el-menu-item index="3" disabled>消息中心</el-menu-item>
+          <el-menu-item index="3"><router-link to="/loan_main">贷款</router-link></el-menu-item>
           <el-menu-item index="4"><router-link :to="{name:'myself',params:{names:this.names}}">我的</router-link></el-menu-item>
       </el-menu>
       <el-main>
