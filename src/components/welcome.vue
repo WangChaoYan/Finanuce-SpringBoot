@@ -52,48 +52,60 @@
         <el-row :gutter="20">
           <el-col :span="6"><div class="grid-content bg-purple">
             <div id="el-color">
-              <h3>财富</h3>
-              <h3>新手最高领888元</h3>
+              <h1>财富</h1>
+              <h2>新手最高领888元</h2>
             </div>
             <div id="el-bottom">
               <p class="p1">官方|综合财富平台</p>
               <p class="p1">安全可靠|严控资金，多重风控审核</p>
               <p class="p1">优质产品|知名合作伙伴，精选理财产品</p>
+              <br/>
+              <hr style="height:3px;border:none;border-top:3px double white;"/>
+              <p class="p1">了解更多>>></p>
             </div>
           </div></el-col>
           <el-col :span="6"><div class="grid-content bg-purple">
 
             <div id="el-color1">
-              <h3>贷款</h3>
-              <h3>1分钟放款</h3>
+              <h1>贷款</h1>
+              <h2>1分钟放款</h2>
             </div>
             <div id="el-bottom1">
               <p class="p1">借还灵活|最高20万，借还灵活</p>
               <p class="p1">急速放款|最快1分钟到账</p>
               <p class="p1">超低利率|日息万2起，按日计息</p>
+              <br/>
+              <hr style="height:3px;border:none;border-top:3px double white;"/>
+              <p class="p1">了解更多>>></p>
             </div>
           </div></el-col>
           <el-col :span="6"><div class="grid-content bg-purple">
             <div id="el-color2">
-              <h3>保险</h3>
-              <h3>超低价格，2.3折起</h3>
+              <h1>保险</h1>
+              <h2>超低价格，2.3折起</h2>
             </div>
             <div id="el-bottom2">
               <p class="p1">健康险|精选产品，全面保障</p>
               <p class="p1">财产险|贴心保障，售后无忧</p>
               <p class="p1">汽车险|二次费改，低至2.3折</p>
+              <br/>
+              <hr style="height:3px;border:none;border-top:3px double white;"/>
+              <p class="p1">了解更多>>></p>
             </div>
 
           </div></el-col>
           <el-col :span="6"><div class="grid-content bg-purple">
             <div id="el-color3">
-              <h3>支付</h3>
-              <h3>惠生活</h3>
+              <h1>支付</h1>
+              <h2>惠生活</h2>
             </div>
             <div id="el-bottom3">
               <p class="p1">便捷支付|安全快捷，智慧营销</p>
               <p class="p1">协议支付|轻松接入，无忧管理</p>
               <p class="p1">合作|银联主要战略合作伙伴</p>
+              <br/>
+              <hr style="height:3px;border:none;border-top:3px double white;"/>
+              <p class="p1">了解更多>>></p>
             </div>
 
           </div></el-col>
@@ -265,43 +277,47 @@
   #el-color{
     border-radius: 8px;
     height: auto;
+    text-align: center;
     background-color: #FF7F50;
    }
   #el-color1{
     border-radius: 8px;
     height: auto;
+    text-align: center;
     background-color: #40E0D0;
   }
   #el-color2{
     border-radius: 8px;
     height: auto;
+    text-align: center;
     background-color: #FF8C00;
   }
   #el-color3{
     border-radius: 8px;
     height: auto;
+    text-align: center;
     background-color: #32CD32;
   }
   #el-bottom{
-    height: 150px;
+    height: 255px;
     border-radius: 8px;
     padding-top: 8px;
     background-color: #FF7F50;
   }
   #el-bottom1{
-    height: 150px;
+    height: 255px;
     border-radius: 8px;
     padding-top: 8px;
     background-color: #40E0D0;
   }
   #el-bottom2{
-    height: 150px;
+    height: 255px;
     border-radius: 8px;
     padding-top: 8px;
     background-color: #FF8C00;
   }
   #el-bottom3{
-    height: 150px;
+    height: 255px;
     border-radius: 8px;
     padding-top: 8px;
     background-color: #32CD32;

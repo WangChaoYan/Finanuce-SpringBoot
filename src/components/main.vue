@@ -6,10 +6,10 @@
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item></el-dropdown-item>
             <el-dropdown-item ></el-dropdown-item>
-            <el-dropdown-item><el-button>退出</el-button></el-dropdown-item>
+            <el-dropdown-item><el-button><router-link to="/adminlogin">退出</router-link></el-button></el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <el-tag>王小虎</el-tag>
+        <el-tag>欢迎登陆-金融P2P</el-tag>
       </el-header>
       <el-container>
       <el-aside  style="background-color: rgb(238, 241, 246)">
