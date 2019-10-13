@@ -93,7 +93,7 @@
       },
       infomation:function (id) {
         var pid=id
-        this.$router.push({path:'/product/'+pid})
+        this.$router.push({path:'/productBuy/'+pid})
       },
       showUser:function () {
         var url="api/getUserSession";
