@@ -39,7 +39,6 @@
             <template slot="title"><i class="el-icon-user-solid">用户管理</i></template>
             <el-menu-item index="3-1"><router-link to="userlist">用户信息管理</router-link></el-menu-item>
             <el-menu-item index="3-2"><router-link to="userOne">单用户查询</router-link></el-menu-item>
-            <el-menu-item index="3-2"><router-link to="">用户权限审核</router-link></el-menu-item>
           </el-submenu>
           <el-submenu index="4">
             <template slot="title"><i class="el-icon-s-tools">资产管理</i></template>

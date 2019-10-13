@@ -43,7 +43,7 @@
       layout="prev, pager, next"
       :page-size="this.params.size"
       v-on:current-change="changePage"
-      :total="total" :current-page="this.params.page">
+      :total="total" :current-page="this.params.page" style="margin-left:500px;margin-top: 5px;">
     </el-pagination>
   </div>
 </template>
