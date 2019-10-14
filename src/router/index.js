@@ -4,6 +4,11 @@ import login from '@/components/login'
 import registered from '@/components/registered'
 import information from '@/components/information'
 import adminlogin from '@/components/adminlogin'
+
+
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
+
 import productShow from '@/components/productShow'
 import productBuy from '@/components/productBuy'
 import touzi from '@/components/touzi'
@@ -13,6 +18,7 @@ import welcome from '@/components/welcome'
 import myself from '@/components/myself'
 import Test from '@/components/Test'
 import dingdan from '@/components/dingdan'
+
 import loan_main from '@/components/loan_main'
 import loan_do from '@/components/loan_do'
 import user_addBankCard from '@/components/user_addBankCard'
