@@ -14,7 +14,6 @@
       </div>
     </div>
     <el-container>
-      <el-header>
         <el-menu
         :default-active="activeIndex2"
         class="el-menu-demo"
@@ -29,40 +28,42 @@
           <el-menu-item index="2-1"><router-link to="/productShow/1">定期活期</router-link></el-menu-item>
           <el-menu-item index="2-2"><router-link to="/touziShow/2">资金投资</router-link></el-menu-item>
         </el-submenu>
-        <el-menu-item index="3" disabled>消息中心</el-menu-item>
+          <el-menu-item index="3"><router-link to="/loan_main">贷款</router-link></el-menu-item>
           <el-menu-item index="4"><router-link to="/myself">我的</router-link></el-menu-item>
       </el-menu>
-      </el-header>
-      <el-main>
         <div id="info">
-          <div id="name"> <h2>{{names}}</h2><hr></div><br><br/><br/>
-          <div id="info-info"><h3 id="buy">我的购买</h3>
+          <div id="name"> <h1>{{names}}</h1><hr></div><br><br/><br/>
+          <div id="info-info"><h1 id="buy">我的购买</h1>
           <el-table
-            :data="dingdans"
-            style="width: 40%;margin: 0 auto"
+            :data="order"
+            style="width: 70%;margin: 0 auto"
             :row-class-name="tableRowClassName">
             <el-table-column
-              prop="pname"
-              label="名称"
+              prop="tradcname"
+              label="商品"
               width="160">
             </el-table-column>
             <el-table-column
-              prop="time"
-              label="时间"
-              width="200">
+              prop="tradnum"
+              label="订单号"
+              width="240">
             </el-table-column>
             <el-table-column
-              prop="money"
+              prop="tradtime"
+              label="时间"
+              width="240">
+            </el-table-column>
+            <el-table-column
+              prop="tradacount"
               label="金额">
             </el-table-column>
             <el-table-column
-              prop="status"
-              label="状态">
+              prop="tradstatus"
+              label="订单状态">
             </el-table-column>
           </el-table>
           </div>
         </div>
-      </el-main>
       <el-footer>
         <div id="footer">
           <div id="left">
@@ -97,9 +98,9 @@
         activeIndex2: '1',
         imgUrl:'',
         imgUrl1:'',
-        dingdans:[],
+        order:[],
         showname:true,
-        names:'',
+        names:''
       };
     },
     created(){
@@ -107,6 +108,8 @@
     this.imgUrl1 = require("@/"+urlTemp1);
     let urlTemp = "assets/title.png";
     this.imgUrl = require("@/"+urlTemp);
+
+    this.names=this.$route.params.names;//页面传参接收方式
     },
     methods: {
       handleSelect(key, keyPath) {
@@ -115,6 +118,12 @@
       infomation:function (id) {
         var pid=id
         this.$router.push({path:'/product/'+pid})
+      },
+      registered:function () {
+        this.$router.push('/registered')
+      },
+      login:function () {
+        this.$router.push('/login')
       },
       showUser:function () {
         var url="api/getUserSession";
@@ -128,21 +137,28 @@
           }
         })
       },
+      out:function () {
+        var url="api/userLoginOut";
+        axios.post(url).then(res=>{
+          this.$router.push('/login');
+        })
+      }
     },
     mounted(){
         this.showUser();
         //页面加载时（页面初始化   需要加载的数据）
+
       var uname=this.names;//uname未获取
       var url="api/selectDingDanByUname?uname="+uname;
       axios.post(url).then(res=>{
-          this.dingdans=res.data;
+          this.order=res.data;
       })
     }
   }
 </script>
 <style>
   #header{
-    width:1464px ;
+    width:1500px ;
     margin:0  auto;
     height: 72px;
     background-color: beige;
@@ -161,7 +177,7 @@
     line-height: 60px;
   }
   #middle{
-    width: 1464px;
+    width: 1500px;
     height: auto;
     margin: 0 auto;
   }
@@ -179,51 +195,51 @@
     transform: scale(1.4);
   }
   #footer{
-    width: 1464px;
-    height: 60px;
-    margin: 0 auto;
-    background-color:#FAFFF0;
+    width: 1500px;
+    height: 65px;
+    background-color:#f0f0f0;
+    margin-top: 15px;
+    margin-left: -20px;
   }
   #left{
-    width: 1000px;
+    width: 800px;
     float: left;
+    margin-top: 10px;
+    margin-left: 30px;
   }
   #right{
     width: 400px;
     float: right;
+    margin-top: 18px;
   }
   #left_left{
-    width: 170px;
-    margin-top: 7px;
+    width: 100px;
     float: left;
   }
   #left_right{
-    width: 700px;
-    margin-left:-50px;
+    width: 650px;
     float: left;
   }
   #top{
-    width: 700px;
-    height: 27px;
     margin-top: 8px;
-    margin-left: -246px;
-    float: left;
   }
   #foot{
-    width: 700px;
-    height: 27px;
-    float: left;
+    margin-top: 8px;
   }
   #name{
     float: left;
-    margin-left: 200px;
+    margin-left: 165px;
   }
   #info-info{
     margin-top: 30px;
   }
   #buy{
     width: 200px;
-    margin-left: 300px;
+    margin-left: 165px;
+  }
+  #info{
+    width: 1200px;
+    margin: 0 auto;
   }
 </style>
 

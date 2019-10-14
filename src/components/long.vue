@@ -1,8 +1,10 @@
+
 <template>
   <div>
       <el-table :data=" product">
         <el-table-column prop="pid" label="商品ID">
         </el-table-column>
+
         <el-table-column prop="pname" label="名称">
         </el-table-column>
         <el-table-column prop="pinfomation" label="信息">
@@ -96,7 +98,7 @@
           this.product=res.data;
         })
       },show:function () {
-        var url = "api/findAll"
+        var url="api/findByIdLike/"+1;
         axios.post(url).then(res => {
           this.product = res.data;
         })
@@ -109,3 +111,4 @@
     }
   };
 </script>
+

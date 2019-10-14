@@ -174,7 +174,7 @@
       },
       buy: function () {
         if(this.names!=''){
-          var url = "api/pay";
+            var url = "api/pay";
           axios.post(url,this.products).then(res => {
             if(res.status==200){
               let routerData=this.$router.resolve({path:'/Test',query:{htmls:res.data}})
@@ -187,7 +187,7 @@
             }
           })
         }else{
-          this.$router.push('/login');
+            this.$router.push('/login');
         }
 
 //        var url = "api/insertDingDan";

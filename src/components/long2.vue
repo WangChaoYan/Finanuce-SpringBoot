@@ -1,8 +1,10 @@
+
 <template>
   <div>
       <el-table :data=" product">
         <el-table-column prop="pid" label="商品ID">
         </el-table-column>
+
         <el-table-column prop="pname" label="名称">
         </el-table-column>
         <el-table-column prop="pinfomation" label="信息">
@@ -13,6 +15,7 @@
         </el-table-column>
         <el-table-column prop="limits" label="金额">
         </el-table-column>
+
         <el-table-column
           label="操作"
           width="180">
@@ -96,7 +99,7 @@
           this.product=res.data;
         })
       },show:function () {
-        var url = "api/findAll"
+        var url="api/findByIdLike/"+3;
         axios.post(url).then(res => {
           this.product = res.data;
         })
@@ -109,3 +112,4 @@
     }
   };
 </script>
+
