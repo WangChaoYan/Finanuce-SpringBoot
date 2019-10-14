@@ -5,10 +5,6 @@ import registered from '@/components/registered'
 import information from '@/components/information'
 import adminlogin from '@/components/adminlogin'
 
-
-import VueParticles from 'vue-particles'
-Vue.use(VueParticles)
-
 import productShow from '@/components/productShow'
 import productBuy from '@/components/productBuy'
 import touzi from '@/components/touzi'
