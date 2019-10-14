@@ -4,11 +4,6 @@ import login from '@/components/login'
 import registered from '@/components/registered'
 import information from '@/components/information'
 import adminlogin from '@/components/adminlogin'
-
-
-import VueParticles from 'vue-particles'
-Vue.use(VueParticles)
-
 import productShow from '@/components/productShow'
 import product from '@/components/product'
 import touzi from '@/components/touzi'
@@ -18,6 +13,7 @@ import welcome from '@/components/welcome'
 import myself from '@/components/myself'
 import Test from '@/components/Test'
 import dingdan from '@/components/dingdan'
+
 import VueParticles from 'vue-particles'
 Vue.use(VueParticles)
 
